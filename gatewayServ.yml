@@ -1,0 +1,30 @@
+ server:
+    port:8085
+  
+ eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+        
+ spring:
+    cloud:
+      gateway:
+        discovery:
+          locator:
+            enabled: true
+        routes:
+        -id: alumnService
+        uri: lb://alumnService
+        predicates:
+           - Path=/alumns/**
+        -id: professorService
+        uri: lb://professorService
+        predicates:
+           - Path=/professor/**
+        -id: disciplineService
+        uri: lb://disciplineService
+        predicates:
+           - Path=/disciplines/**
+        
+         
+               
